@@ -55,8 +55,8 @@ class BestBooks extends React.Component {
               <Carousel>
                 {this.state.books.map(book => {
                   return (
-                    <Carousel.Item key={book._id}>
-                      {/*caro.item interval={1500}*/}
+                    <Carousel.Item interval={1500}>
+                      {/*caro.item key={book._id*/}
                       <img
                         className="d-block w-100"
                         src="https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg"
@@ -83,22 +83,3 @@ class BestBooks extends React.Component {
 }
 
 export default BestBooks;
-
-
-/*
-                {/* {this.state.books.map((book, idx) => {
-              return <Carousel.Item key={idx}>
-              <img 
-              className="d-block w-100"
-              src="Harvey.jpeg"
-              alt="test"
-              />
-              <Carousel.Caption>
-                <h3>{book.title}</h3>
-                <p>{book.description}</p>
-                <p>{book.email}</p>
-                <p type="checkbox" label="Yes, this is published" />
-              </Carousel.Caption>
-            </Carousel.Item>
-            })
-          }} */

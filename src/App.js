@@ -9,9 +9,6 @@ import {
 } from "react-router-dom";
 import BestBooks from './BestBooks';
 import Profile from './Profile';
-import LoginForm from './LoginForm';
-import Login from './Login';
-import LogoutButton from './LogoutButton';
 
 class App extends React.Component {
 
@@ -37,26 +34,20 @@ class App extends React.Component {
   render() {
     return (
       <>
-        {/* <BestBooks/> */}
-        {/* <LoginForm /> */}
+        <BestBooks/>
         <Router>
           <Header user={this.state.user} onLogout={this.logoutHandler} />
-          {/* <Login /> */}
           <Switch>
             <Route exact path="/">
-              {this.state.user ? <BestBooks user={this.state.user} /> : <Login userLogin={this.loginHandler} />}
-              {/* if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+              {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             </Route>
-            <Route exact path="/Profile">
-              <Profile userInfo={this.state.user} />
-              {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            <Route exact path="/profile">
+              <Profile />
+              <div>
+                Hello Lemi
+              </div>
             </Route>
-            <Route exact path="/LogoutButton">
-              <LoginForm userLogin={this.logoutHandler}/>
-            </Route>
-            <Route exact path="/LogoutButton">
-              <LogoutButton onLogout={this.logoutHandler}/>
-            </Route>
+            {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
           </Switch>
           <Footer />
         </Router>
