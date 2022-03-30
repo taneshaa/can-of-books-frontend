@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './Header';
-import BestBooks from './BestBooks';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -8,6 +7,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import BestBooks from './BestBooks';
+import Profile from './Profile';
+import LoginForm from './LoginForm';
+import Login from './Login';
+import LogoutButton from './LogoutButton';
 
 class App extends React.Component {
 
@@ -33,14 +37,26 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <BestBooks/>
+        {/* <BestBooks/> */}
+        {/* <LoginForm /> */}
         <Router>
           <Header user={this.state.user} onLogout={this.logoutHandler} />
+          {/* <Login /> */}
           <Switch>
             <Route exact path="/">
-              {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+              {this.state.user ? <BestBooks user={this.state.user} /> : <Login userLogin={this.loginHandler} />}
+              {/* if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             </Route>
-            {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            <Route exact path="/Profile">
+              <Profile userInfo={this.state.user} />
+              {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            </Route>
+            <Route exact path="/LogoutButton">
+              <LoginForm userLogin={this.logoutHandler}/>
+            </Route>
+            <Route exact path="/LogoutButton">
+              <LogoutButton onLogout={this.logoutHandler}/>
+            </Route>
           </Switch>
           <Footer />
         </Router>

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { alignPropType } from 'react-bootstrap/esm/DropdownMenu';
+import Carousel from 'react-bootstrap/Carousel';
+import './BestBooks.css';
+// import { alignPropType } from 'react-bootstrap/esm/DropdownMenu';
 
 
 let SERVER = process.env.REACT_APP_SERVER;
@@ -12,6 +14,7 @@ class BestBooks extends React.Component {
       books: []
     }
   }
+
 
   getBooks = async () => {
     try {
@@ -33,27 +36,69 @@ class BestBooks extends React.Component {
 
 
   render() {
-    let books = this.state.books.map(book => (
-      <p key={book._id}>{book.title}:{book.description}</p>
-    ))
+    console.log('test statwe', this.state);
+    // let books = this.state.books.map(book => (
+    //   <p key={book._id}>{book.title}: {book.description}</p>
+    // ))
 
     /* TODO: render user's books in a Carousel */
 
     return (
       <>
-      <main>
-        {books}
-      </main>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
+       
+          {/* {books} */}
+          {this.state.books.length ? (
 
-        {this.state.books.length ? (
-          <p>Book Carousel coming soon</p>
-        ) : (
-          <h3>No Books Found :(</h3>
-        )}
+            <div style={{ display: 'block', width: 700, padding: 30 }}>
+              <h4>React-Bootstrap Carousel Component</h4>
+              <Carousel>
+                {this.state.books.map(book => {
+                  return (
+                    <Carousel.Item key={book._id}>
+                      {/*caro.item interval={1500}*/}
+                      <img
+                        className="d-block w-100"
+                        src="https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg"
+                        alt="One"
+                      />
+                      <Carousel.Caption>
+                        <h3>{book.title}</h3>
+                        <p>{book.description}</p>
+                      </Carousel.Caption>
+                    </Carousel.Item>
+                  )
+                })}
+              </Carousel>
+            </div>
+
+
+          ) : (
+            <h3>No Books Found</h3>
+          )}
+        
       </>
     )
   }
 }
 
 export default BestBooks;
+
+
+/*
+                {/* {this.state.books.map((book, idx) => {
+              return <Carousel.Item key={idx}>
+              <img 
+              className="d-block w-100"
+              src="Harvey.jpeg"
+              alt="test"
+              />
+              <Carousel.Caption>
+                <h3>{book.title}</h3>
+                <p>{book.description}</p>
+                <p>{book.email}</p>
+                <p type="checkbox" label="Yes, this is published" />
+              </Carousel.Caption>
+            </Carousel.Item>
+            })
+          }} */
