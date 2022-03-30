@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import BestBooks from './BestBooks';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -32,6 +33,7 @@ class App extends React.Component {
   render() {
     return (
       <>
+      <BestBooks/>
         <Router>
           <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
