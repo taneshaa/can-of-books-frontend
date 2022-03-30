@@ -22,7 +22,7 @@ export default class LoginButton extends Component {
       <>
       {this.state.isLoggedIn
       ?
-      <LoginForm loginHandler={this.props.locationHandler} />
+      <LoginForm loginHandler={this.props.loginHandler} />
       :
       <Button variant="primary" onClick={this.handleLogState}>Log In</Button>
       }
