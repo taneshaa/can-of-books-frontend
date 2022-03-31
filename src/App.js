@@ -9,8 +9,9 @@ import {
 } from "react-router-dom";
 import BestBooks from './BestBooks';
 import Profile from './Profile';
-import Login from './Login';
+// import Login from './Login';
 import LoginForm from './LoginForm';
+import LogoutButton from './LogoutButton';
 
 class App extends React.Component {
 
@@ -26,6 +27,7 @@ class App extends React.Component {
     console.log('logged in function');
     this.setState({
       isLoggedIn: true,
+      user
     })
   }
 
@@ -48,7 +50,7 @@ class App extends React.Component {
             </Route>
             {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             <Route exact path="/profile">
-              <Profile user={this.state.user}/>
+              {this.state.isLoggedIn ? <Profile user={this.state.user}/> : null}
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
           </Switch>

@@ -36,7 +36,7 @@ class BestBooks extends React.Component {
 
 
   render() {
-    console.log('test statwe', this.state);
+    console.log('test state', this.state);
     // let books = this.state.books.map(book => (
     //   <p key={book._id}>{book.title}: {book.description}</p>
     // ))
@@ -55,7 +55,7 @@ class BestBooks extends React.Component {
               <Carousel>
                 {this.state.books.map(book => {
                   return (
-                    <Carousel.Item interval={1500}>
+                    <Carousel.Item interval={null}>
                       {/*caro.item key={book._id*/}
                       <img
                         className="d-block w-100"

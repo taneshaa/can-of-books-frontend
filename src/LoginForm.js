@@ -6,12 +6,11 @@ class LoginForm extends Component {
 constructor(props){
   super(props);
   this.state = {
-    user: {}
+    user: ''
   }
 }
 //state funciton for user state
   handleState = (e) => {
-    console.log('input checker', e.target.value, this.state.user);
     this.setState({
       user: e.target.value
     });
@@ -19,7 +18,8 @@ constructor(props){
 
   //handle submit to call props login function, passes in this.state.user
   handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    console.log('this is user', this.state.user);
     this.props.loginHandler(this.state.user);
     console.log('submit checker', this.state.user);
   }
@@ -39,7 +39,7 @@ constructor(props){
           <Form.Control type="password" placeholder="Password" />
         </Form.Group> */}
         
-        <Button variant="primary" type="submit" onSubmit={this.handleSubmit}>
+        <Button variant="primary" type="submit" onClick={() => this.props.loginHandler(this.state.user)}>
           Submit
         </Button>
       </Form>
