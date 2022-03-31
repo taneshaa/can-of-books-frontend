@@ -7,36 +7,50 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import BestBooks from './BestBooks';
+import Profile from './Profile';
+// import Login from './Login';
+import LoginForm from './LoginForm';
+import LogoutButton from './LogoutButton';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
+   this.state = {
+     isLoggedIn: false,
       user: null,
     }
   }
 
   loginHandler = (user) => {
+    console.log('logged in function');
     this.setState({
-      user,
+      isLoggedIn: true,
+      user
     })
   }
 
   logoutHandler = () => {
     this.setState({
-      user: null,
+     isLoggedIn: false,
     })
   }
 
   render() {
+    console.log('what is state', this.state);
     return (
       <>
+      
         <Router>
           <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
-              {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+              {this.state.isLoggedIn ? <BestBooks user={this.state.user} /> : <LoginForm loginHandler={this.loginHandler} />}
+            </Route>
+            {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+            <Route exact path="/profile">
+              {this.state.isLoggedIn ? <Profile user={this.state.user}/> : null}
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
           </Switch>
@@ -48,3 +62,20 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+// " <Router>
+// <Header user={this.state.user} onLogout={this.logoutHandler} />
+// <Switch>
+// <Route exact path="/Profile">
+// <Profile userInfo={this.state.user} />
+// </Route>
+// <Route exact path="/LoginButton">
+// <LoginForm loginHandler={this.setLogin} />
+// </Route>
+// <Route exact path="/LogoutButton">
+// <LogoutButton onLogout={this.logoutHandler}/>
+// </Route>
+// </Switch>
+// <Footer />
+// </Router> "
